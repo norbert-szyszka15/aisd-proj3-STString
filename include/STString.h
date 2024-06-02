@@ -5,20 +5,38 @@
 #define MAX_WORDS 100
 #define MAX_WORD_LENGTH 50
 
-typedef struct {
+typedef struct STSTRING {
     char *data;
     size_t length;
-} STString;
+} STSTRING;
 
-// Funkcje glowne STString
-STString stringInit(const char *initSTString);
+typedef struct Node {
+    char *word;
+    int count;
+    struct Node *left;
+    struct Node *right;
+} Node;
 
-size_t stringLength(const STString *sts);
-void stringCat(STString *destination, const STString *source);
-STString stringCopy(const STString *source);
-int stringCompare(const STString *sts1, const STString *sts2);
+/************************
+ FUNKCJE GŁÓWNE STSTRING
+************************/
+STSTRING stringInit(const char *initSTString);
+size_t stringLength(const STSTRING *sts);
+void stringCat(STSTRING *destination, const STSTRING *source);
+STSTRING stringCopy(const STSTRING *source);
+int stringCompare(const STSTRING *sts1, const STSTRING *sts2);
+void stringPrint(STSTRING sts);
+void stringFree(STSTRING *sts);
+void stringClean(STSTRING *sts);
 
-void stringFree(STString *sts);
-void stringClean(STString *sts);
+/**************************
+ FUNKCJE GŁÓWNE DRZEWA BST
+**************************/
+Node* createNode(const char *word);
+Node* insertNode(Node *root, const char *word);
+void inorderTraversal(Node *root);
+void freeTree(Node *root);
+Node* splitTextIntoWordsAndInsert(STSTRING *text);
+Node* searchNode(Node *root, const char *word);
 
-#define AUTO __attribute__((cleanup(stringClean)))
+#define STString STSTRING __attribute__((cleanup(stringClean)))

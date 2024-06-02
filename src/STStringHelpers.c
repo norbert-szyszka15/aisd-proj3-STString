@@ -1,6 +1,6 @@
 #include "STStringHelpers.h"
 
-// Obliczanie dlugosci stringa
+// Obliczanie długości stringa
 size_t ststrlen(const char *str) {
     size_t length = 0;
     while (str[length] != '\0') {
@@ -9,7 +9,7 @@ size_t ststrlen(const char *str) {
     return length;
 }
 
-// Kopiowanie stringow
+// Kopiowanie stringów
 char *ststrcpy(char *destination, const char *source) {
     char *strPtr = destination;
     while (*source) {
@@ -19,7 +19,7 @@ char *ststrcpy(char *destination, const char *source) {
     return destination;
 }
 
-// Laczenie stringow
+// Łączenie stringów
 char *ststrcat(char *destination, const char *source) {
     char *strPtr = destination + ststrlen(destination);
     while (*source) {
@@ -29,7 +29,7 @@ char *ststrcat(char *destination, const char *source) {
     return destination;
 }
 
-// Porownywanie stringow
+// Porównywanie stringów
 int ststrcmp(const char *ststr1, const char *ststr2) {
     while (*ststr1 && (*ststr1 == *ststr2)) {
         ststr1++;
